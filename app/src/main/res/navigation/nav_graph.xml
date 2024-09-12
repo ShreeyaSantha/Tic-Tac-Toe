@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.example.tictaktoe.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+        <action
+            android:id="@+id/action_FirstFragment_to_tikTacToeScreen2"
+            app:destination="@id/tikTacToeScreen2" />
+    </fragment>
+    <activity
+        android:id="@+id/tikTacToeScreen2"
+        android:name="com.example.tictaktoe.TikTacToeScreen2"
+        android:label="activity_tik_tac_toe_screen2"
+        tools:layout="@layout/activity_tik_tac_toe_screen2" />
+    <fragment
+        android:id="@+id/instructionPage"
+        android:name="com.example.tictaktoe.InstructionPage"
+        android:label="InstructionPage"
+        tools:layout="@layout/fragment_instruction_page">
+        <action
+            android:id="@+id/action_instructionPage_to_tikTacToeScreen2"
+            app:destination="@id/tikTacToeScreen2" />
+    </fragment>
+</navigation>

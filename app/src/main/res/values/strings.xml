@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">TicTakToe</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="play">Play</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="background">Background</string>
+    <string name="minecraftlogo">MinecraftLogo</string>
+    <string name="play2">Play</string>
+    <string name="tik_tac_toe">TIK TAC TOE</string>
+    <string name="current_turn">Current Turn:</string>
+    <string name="imageofturn">imageofturn</string>
+    <string name="number1spot">number1spot</string>
+    <string name="spot2">spot2</string>
+    <string name="spot3">spot3</string>
+    <string name="spot4">spot4</string>
+    <string name="reset">Reset</string>
+    <string name="instructions">Instructions</string>
+    <string name="settings">Settings</string>
+    <string name="Settings">Settings</string>
+    <string name="Instructions">Instructions</string>
+    <string name="Reset">Reset</string>
+    <string name="chest1">chest1</string>
+    <string name="small_zombie">small zombie</string>
+    <string name="medium_zombie">medium zombie</string>
+    <string name="largest_zombie">largest zombie</string>
+    <string name="skeleton_medium">skeleton medium</string>
+    <string name="skeleton1">skeleton1</string>
+    <string name="skeleton_large">skeleton_large</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="_2">2</string>
+    <string name="button">Button</string>
+    <string name="Back">Back</string>
+    <string name="instructionpage">instructionpage</string>
+</resources>

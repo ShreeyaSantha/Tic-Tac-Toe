@@ -1,0 +1,512 @@
+<html>
+<head>
+<title>TikTacToeScreen2.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+TikTacToeScreen2.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.tictaktoe</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">androidx.appcompat.app.AlertDialog</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.appcompat.app.AppCompatActivity</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.fragment.app.FragmentTransaction</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">android.annotation.SuppressLint</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Button</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.ImageButton</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.ImageView</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.TextView</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">TikTacToeScreen2 </span><span class="s0">extends </span><span class="s1">AppCompatActivity {</span>
+
+    <span class="s1">ImageButton b1</span><span class="s0">;</span>
+    <span class="s1">Button b2</span><span class="s0">;</span>
+    <span class="s0">char</span><span class="s1">[][] board ={{</span><span class="s2">'c'</span><span class="s0">,</span><span class="s2">'c'</span><span class="s0">,</span><span class="s2">'c'</span><span class="s1">}</span><span class="s0">,</span><span class="s1">{</span><span class="s2">'c'</span><span class="s0">,</span><span class="s2">'c'</span><span class="s0">,</span><span class="s2">'c'</span><span class="s1">}</span><span class="s0">,</span><span class="s1">{</span><span class="s2">'c'</span><span class="s0">,</span><span class="s2">'c'</span><span class="s0">,</span><span class="s2">'c'</span><span class="s1">}}</span><span class="s0">;</span>
+    <span class="s0">char </span><span class="s1">turn = </span><span class="s2">'a'</span><span class="s0">;</span>
+
+    <span class="s3">// saves how valuable character played at that square is</span>
+    <span class="s0">int </span><span class="s1">a = </span><span class="s4">0</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">b = </span><span class="s4">0</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">c = </span><span class="s4">0</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">d = </span><span class="s4">0</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">e = </span><span class="s4">0</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">f = </span><span class="s4">0</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">g = </span><span class="s4">0</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">h = </span><span class="s4">0</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">i =</span><span class="s4">0</span><span class="s0">;</span>
+
+    <span class="s3">//count used to keep track how much of each character is used</span>
+    <span class="s0">int </span><span class="s1">count1 = </span><span class="s4">2</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">count2 = </span><span class="s4">2</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">count3 = </span><span class="s4">2</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">count4 = </span><span class="s4">2</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">count5 = </span><span class="s4">2</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">count6 = </span><span class="s4">2</span><span class="s0">;</span>
+
+ <span class="s3">//Used to save users character choice</span>
+    <span class="s0">int </span><span class="s1">choice = </span><span class="s4">1</span><span class="s0">;</span>
+   <span class="s0">int </span><span class="s1">choice2 = </span><span class="s4">0</span><span class="s0">;</span>
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span>
+        <span class="s1">setContentView(R.layout.activity_tik_tac_toe_screen2)</span><span class="s0">;</span>
+
+        <span class="s1">b2= findViewById(R.id.instructions)</span><span class="s0">;</span>
+        <span class="s1">b2.setOnClickListener(</span>
+                <span class="s3">//when instruction button pressed moves to instruction page</span>
+                <span class="s1">v -&gt; {</span>
+                    <span class="s1">FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction()</span><span class="s0">;</span>
+                    <span class="s1">fragmentTransaction.replace(R.id.tikTacToeScreen2</span><span class="s0">,new </span><span class="s1">InstructionPage()).commit()</span><span class="s0">;</span>
+
+                <span class="s1">}</span>
+        <span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">b1 = findViewById(R.id.homebutton)</span><span class="s0">;</span>
+        <span class="s1">b1.setOnClickListener(</span>
+                <span class="s1">v -&gt; {</span>
+                   <span class="s3">//when homebutton pressed, page moved to home page</span>
+                    <span class="s1">FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction()</span><span class="s0">;</span>
+                    <span class="s1">fragmentTransaction.replace(R.id.tikTacToeScreen2</span><span class="s0">,new </span><span class="s1">FirstFragment()).commit()</span><span class="s0">;</span>
+                <span class="s1">}</span>
+        <span class="s1">)</span><span class="s0">;</span>
+
+    <span class="s1">}</span>
+
+
+<span class="s3">// Method to alerts users that a count variable is at 0; thus no more of the character left</span>
+    <span class="s0">public void </span><span class="s1">Alert(</span><span class="s0">int </span><span class="s1">x</span><span class="s0">, int </span><span class="s1">y) {</span>
+    <span class="s1">AlertDialog.Builder builder = </span><span class="s0">new </span><span class="s1">AlertDialog.Builder(TikTacToeScreen2.</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">builder.setMessage(</span><span class="s2">&quot;There is no more of this character left&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">builder.setTitle(</span><span class="s2">&quot;No More Left&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">builder.setCancelable(</span><span class="s0">true</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">AlertDialog alertDialog = builder.create()</span><span class="s0">;</span>
+    <span class="s1">alertDialog.show()</span><span class="s0">;</span>
+    <span class="s1">board[x][y] = </span><span class="s2">'c'</span><span class="s0">;</span>
+<span class="s1">}</span>
+
+<span class="s3">//When User replaces a used character, the character is added back into count</span>
+    <span class="s0">public void </span><span class="s1">ChangeText(</span><span class="s0">int </span><span class="s1">x</span><span class="s0">,char </span><span class="s1">a</span><span class="s0">, char </span><span class="s1">b){</span>
+
+
+        <span class="s1">TextView zombie1 = findViewById(R.id.zombie1text)     </span><span class="s0">;</span>
+        <span class="s1">TextView zombie2 = findViewById(R.id.zombie2text)     </span><span class="s0">;</span>
+        <span class="s1">TextView zombie3 = findViewById(R.id.zombie3text)</span><span class="s0">;</span>
+        <span class="s1">TextView skeleton1 = findViewById(R.id.zombie4text)     </span><span class="s0">;</span>
+        <span class="s1">TextView skeleton2 = findViewById(R.id.zombie5text)     </span><span class="s0">;</span>
+        <span class="s1">TextView skeleton3 = findViewById(R.id.zombie6text)     </span><span class="s0">;</span>
+
+
+<span class="s3">//If it is b turn, changes zombie text if zombie was replaced</span>
+        <span class="s0">if </span><span class="s1">(turn == b){</span>
+            <span class="s0">if </span><span class="s1">(x==</span><span class="s4">1</span><span class="s1">){</span>
+                <span class="s1">count1++</span><span class="s0">;</span>
+                <span class="s1">zombie1.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count1)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+            <span class="s0">else if </span><span class="s1">(x==</span><span class="s4">2</span><span class="s1">){</span>
+                <span class="s1">count2++</span><span class="s0">;</span>
+                <span class="s1">zombie2.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count2)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+            <span class="s0">else if </span><span class="s1">(x==</span><span class="s4">3</span><span class="s1">){</span>
+                <span class="s1">count3++</span><span class="s0">;</span>
+                <span class="s1">zombie3.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count3)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+<span class="s3">//If it is a turn, changes skeleton text if zombie was replaced</span>
+        <span class="s1">}</span>
+        <span class="s0">else if </span><span class="s1">(turn == a){</span>
+            <span class="s0">if </span><span class="s1">(x==</span><span class="s4">1</span><span class="s1">){</span>
+                <span class="s1">count4++</span><span class="s0">;</span>
+                <span class="s1">skeleton1.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count4)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+            <span class="s0">else if </span><span class="s1">(x==</span><span class="s4">2</span><span class="s1">){</span>
+                <span class="s1">count5++</span><span class="s0">;</span>
+                <span class="s1">skeleton2.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count5)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+            <span class="s0">else if </span><span class="s1">(x==</span><span class="s4">3</span><span class="s1">){</span>
+                <span class="s1">count6++</span><span class="s0">;</span>
+                <span class="s1">skeleton3.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count6)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+
+
+
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+<span class="s3">// Changes the image of the square</span>
+<span class="s1">@SuppressLint(</span><span class="s2">&quot;SetTextI18n&quot;</span><span class="s1">)</span>
+<span class="s0">public void </span><span class="s1">changeSquare (ImageButton view</span><span class="s0">, int </span><span class="s1">x</span><span class="s0">, int </span><span class="s1">y){</span>
+
+
+    <span class="s1">TextView zombie1 = findViewById(R.id.zombie1text)     </span><span class="s0">;</span>
+    <span class="s1">TextView zombie2 = findViewById(R.id.zombie2text)     </span><span class="s0">;</span>
+    <span class="s1">TextView zombie3 = findViewById(R.id.zombie3text)     </span><span class="s0">;</span>
+    <span class="s1">TextView skeleton1 = findViewById(R.id.zombie4text)     </span><span class="s0">;</span>
+    <span class="s1">TextView skeleton2 = findViewById(R.id.zombie5text)     </span><span class="s0">;</span>
+    <span class="s1">TextView skeleton3 = findViewById(R.id.zombie6text)     </span><span class="s0">;</span>
+
+    <span class="s0">if </span><span class="s1">(turn == </span><span class="s2">'a'</span><span class="s1">) {</span>
+        <span class="s3">//finds choice and sets it to the respective image</span>
+        <span class="s0">if </span><span class="s1">(choice == </span><span class="s4">1</span><span class="s1">) {</span>
+            <span class="s0">if </span><span class="s1">(count1 &gt; </span><span class="s4">0</span><span class="s1">) {</span>
+                <span class="s1">count1--</span><span class="s0">;</span>
+                <span class="s1">zombie1.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count1)</span><span class="s0">;</span>
+                <span class="s1">view.setImageResource(R.drawable.zombiea)</span><span class="s0">;</span>
+                <span class="s1">FlipTurn()</span><span class="s0">;</span>
+                <span class="s1">Win()</span><span class="s0">;</span>
+            <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">Alert(x</span><span class="s0">,</span><span class="s1">y)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">} </span><span class="s0">else if </span><span class="s1">(choice == </span><span class="s4">2</span><span class="s1">) {</span>
+            <span class="s0">if </span><span class="s1">(count2 &gt; </span><span class="s4">0</span><span class="s1">) {</span>
+                <span class="s1">count2--</span><span class="s0">;</span>
+                <span class="s1">zombie2.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count2)</span><span class="s0">;</span>
+                <span class="s1">view.setImageResource(R.drawable.zombie2)</span><span class="s0">;</span>
+                <span class="s1">FlipTurn()</span><span class="s0">;</span>
+                <span class="s1">Win()</span><span class="s0">;</span>
+            <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">Alert(x</span><span class="s0">,</span><span class="s1">y)</span><span class="s0">;</span>
+
+            <span class="s1">}</span>
+
+        <span class="s1">} </span><span class="s0">else if </span><span class="s1">(choice == </span><span class="s4">3</span><span class="s1">) {</span>
+            <span class="s0">if </span><span class="s1">(count3 &gt; </span><span class="s4">0</span><span class="s1">) {</span>
+                <span class="s1">count3--</span><span class="s0">;</span>
+                <span class="s1">zombie3.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count3)</span><span class="s0">;</span>
+                <span class="s1">view.setImageResource(R.drawable.zombie3)</span><span class="s0">;</span>
+                <span class="s1">FlipTurn()</span><span class="s0">;</span>
+                <span class="s1">Win()</span><span class="s0">;</span>
+            <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">Alert(x</span><span class="s0">,</span><span class="s1">y)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s0">else if </span><span class="s1">(turn == </span><span class="s2">'b'</span><span class="s1">) {</span>
+        <span class="s3">//finds choice and sets it to the respective image when its skeletons turn</span>
+        <span class="s0">if </span><span class="s1">(choice == </span><span class="s4">1</span><span class="s1">) {</span>
+           <span class="s0">if </span><span class="s1">(count4&gt;</span><span class="s4">0</span><span class="s1">) {</span>
+               <span class="s1">count4--</span><span class="s0">;</span>
+               <span class="s1">skeleton1.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count4)</span><span class="s0">;</span>
+               <span class="s1">view.setImageResource(R.drawable.skeletonb1)</span><span class="s0">;</span>
+               <span class="s1">FlipTurn()</span><span class="s0">;</span>
+               <span class="s1">Win()</span><span class="s0">;</span>
+           <span class="s1">}</span>
+           <span class="s0">else </span><span class="s1">{</span>
+               <span class="s1">Alert(x</span><span class="s0">,</span><span class="s1">y)</span><span class="s0">;</span>
+           <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">else if </span><span class="s1">(choice == </span><span class="s4">2</span><span class="s1">) {</span>
+            <span class="s0">if </span><span class="s1">(count5&gt;</span><span class="s4">0</span><span class="s1">) {</span>
+                <span class="s1">count5--</span><span class="s0">;</span>
+                <span class="s1">skeleton2.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count5)</span><span class="s0">;</span>
+                <span class="s1">view.setImageResource(R.drawable.skeletonb2)</span><span class="s0">;</span>
+                <span class="s1">FlipTurn()</span><span class="s0">;</span>
+                <span class="s1">Win()</span><span class="s0">;</span>
+            <span class="s1">}</span>
+            <span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">Alert(x</span><span class="s0">,</span><span class="s1">y)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">else if </span><span class="s1">(choice == </span><span class="s4">3</span><span class="s1">) {</span>
+            <span class="s0">if </span><span class="s1">(count6&gt;</span><span class="s4">0</span><span class="s1">) {</span>
+                <span class="s1">count6--</span><span class="s0">;</span>
+                <span class="s1">skeleton3.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count6)</span><span class="s0">;</span>
+                <span class="s1">view.setImageResource(R.drawable.skeletonb3)</span><span class="s0">;</span>
+                <span class="s1">FlipTurn()</span><span class="s0">;</span>
+                <span class="s1">Win()</span><span class="s0">;</span>
+            <span class="s1">}</span>
+            <span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">Alert(x</span><span class="s0">,</span><span class="s1">y)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+<span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">upDateSquare (</span><span class="s0">int </span><span class="s1">x</span><span class="s0">, int </span><span class="s1">y</span><span class="s0">,</span><span class="s1">ImageButton view</span><span class="s0">,int </span><span class="s1">boardnum){</span>
+        <span class="s3">// board is empty</span>
+    <span class="s0">if </span><span class="s1">(board [x][y] == </span><span class="s2">'c'</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s1">board[x][y] = turn</span><span class="s0">;</span>
+        <span class="s1">changeSquare(view</span><span class="s0">,</span><span class="s1">x</span><span class="s0">,</span><span class="s1">y)</span><span class="s0">;</span>
+        <span class="s1">choice =</span><span class="s4">1</span><span class="s0">;</span>
+        <span class="s3">//when board and turn are the same</span>
+    <span class="s1">} </span><span class="s0">else if </span><span class="s1">(board [x][y] == turn) {</span>
+        <span class="s3">//boardnum(tells how high played chacter is), if less then new choice code, change square occurs</span>
+        <span class="s0">if</span><span class="s1">(boardnum &lt; choice) {</span>
+            <span class="s1">ChangeText(boardnum</span><span class="s0">,</span><span class="s2">'b'</span><span class="s0">,</span><span class="s2">'a'</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">changeSquare(view</span><span class="s0">, </span><span class="s1">x</span><span class="s0">, </span><span class="s1">y)</span><span class="s0">;</span>
+            <span class="s1">choice = </span><span class="s4">1</span><span class="s0">;</span>
+        <span class="s1">}</span>
+
+    <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+        <span class="s0">if </span><span class="s1">(boardnum &lt; choice) {</span>
+            <span class="s1">ChangeText(boardnum</span><span class="s0">,</span><span class="s2">'a'</span><span class="s0">,</span><span class="s2">'b'</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">board[x][y] = turn</span><span class="s0">;</span>
+            <span class="s1">changeSquare(view</span><span class="s0">,</span><span class="s1">x</span><span class="s0">,</span><span class="s1">y)</span><span class="s0">;</span>
+            <span class="s1">choice = </span><span class="s4">1</span><span class="s0">;</span>
+
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// win patters</span>
+    <span class="s0">public void </span><span class="s1">Win(){</span>
+        <span class="s0">char </span><span class="s1">winner = </span><span class="s2">'n'</span><span class="s0">;</span>
+        <span class="s0">if </span><span class="s1">(board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] &amp;&amp; board [</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board [</span><span class="s4">0</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] &amp;&amp; board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">)</span>
+            <span class="s1">winner = board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]</span><span class="s0">;</span>
+        <span class="s0">else if </span><span class="s1">(board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] &amp;&amp; board [</span><span class="s4">1</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board [</span><span class="s4">1</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] &amp;&amp; board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">)</span>
+            <span class="s1">winner = board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]</span><span class="s0">;</span>
+        <span class="s0">else if </span><span class="s1">(board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] &amp;&amp; board [</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board [</span><span class="s4">2</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] &amp;&amp; board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">)</span>
+            <span class="s1">winner = board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]</span><span class="s0">;</span>
+        <span class="s0">else if </span><span class="s1">(board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] == board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] &amp;&amp; board [</span><span class="s4">0</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] == board [</span><span class="s4">2</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] &amp;&amp; board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">1</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">)</span>
+            <span class="s1">winner = board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">1</span><span class="s1">]</span><span class="s0">;</span>
+        <span class="s0">else if </span><span class="s1">(board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] == board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] &amp;&amp; board [</span><span class="s4">0</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] == board [</span><span class="s4">2</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] &amp;&amp; board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">2</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">)</span>
+            <span class="s1">winner = board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">2</span><span class="s1">]</span><span class="s0">;</span>
+        <span class="s0">else if </span><span class="s1">(board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] &amp;&amp; board [</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board [</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] &amp;&amp; board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">)</span>
+            <span class="s1">winner = board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]</span><span class="s0">;</span>
+        <span class="s0">else if </span><span class="s1">(board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] &amp;&amp; board [</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board [</span><span class="s4">2</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] &amp;&amp; board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">)</span>
+            <span class="s1">winner = board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]</span><span class="s0">;</span>
+        <span class="s0">else if </span><span class="s1">(board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] &amp;&amp; board [</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] == board [</span><span class="s4">0</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] &amp;&amp; board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">)</span>
+            <span class="s1">winner = board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]</span><span class="s0">;</span>
+        <span class="s0">else if </span><span class="s1">(board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">&amp;&amp; board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">1</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">&amp;&amp;board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">2</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">&amp;&amp;</span>
+                <span class="s1">board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">&amp;&amp;board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">1</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">&amp;&amp;board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">2</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">&amp;&amp;</span>
+                <span class="s1">board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">&amp;&amp;board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">1</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">&amp;&amp;board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">2</span><span class="s1">]!=</span><span class="s2">'c'</span><span class="s1">)</span>
+            <span class="s1">winner = </span><span class="s2">'t'</span><span class="s0">;</span>
+
+        <span class="s0">if </span><span class="s1">(winner == </span><span class="s2">'a'</span><span class="s1">) {</span>
+            <span class="s1">AlertDialog.Builder builder = </span><span class="s0">new </span><span class="s1">AlertDialog.Builder(TikTacToeScreen2.</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setMessage(</span><span class="s2">&quot;Congrats, Zombie Wins&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setTitle(</span><span class="s2">&quot;Winner Zombie!&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setCancelable(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setNeutralButton(</span><span class="s2">&quot;Play Again&quot;</span><span class="s0">, </span><span class="s1">(dialog</span><span class="s0">, </span><span class="s1">which) -&gt; {</span>
+                <span class="s3">// When the user click yes button then app will close</span>
+                <span class="s1">Reset()</span><span class="s0">;</span>
+            <span class="s1">})</span><span class="s0">;</span>
+            <span class="s1">AlertDialog alertDialog = builder.create()</span><span class="s0">;</span>
+            <span class="s1">alertDialog.show()</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">else if</span><span class="s1">(winner == </span><span class="s2">'b'</span><span class="s1">){</span>
+            <span class="s1">AlertDialog.Builder builder = </span><span class="s0">new </span><span class="s1">AlertDialog.Builder(TikTacToeScreen2.</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setMessage(</span><span class="s2">&quot;Congrats,Skeleton Wins&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setTitle(</span><span class="s2">&quot;Winner Skeleton!&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setCancelable(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setNeutralButton(</span><span class="s2">&quot;Reset&quot;</span><span class="s0">, </span><span class="s1">(dialog</span><span class="s0">, </span><span class="s1">which) -&gt; {</span>
+                <span class="s3">// When the user click yes button then app will close</span>
+                <span class="s1">Reset()</span><span class="s0">;</span>
+            <span class="s1">})</span><span class="s0">;</span>
+
+            <span class="s1">AlertDialog alertDialog = builder.create()</span><span class="s0">;</span>
+            <span class="s1">alertDialog.show()</span><span class="s0">;</span>
+        <span class="s1">} </span><span class="s0">else if </span><span class="s1">(winner == </span><span class="s2">'t'</span><span class="s1">) {</span>
+            <span class="s1">AlertDialog.Builder builder = </span><span class="s0">new </span><span class="s1">AlertDialog.Builder(TikTacToeScreen2.</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setMessage(</span><span class="s2">&quot;Tie Game&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setTitle(</span><span class="s2">&quot;No one wins, Play Again!&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setCancelable(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">builder.setNeutralButton(</span><span class="s2">&quot;Reset&quot;</span><span class="s0">, </span><span class="s1">(dialog</span><span class="s0">, </span><span class="s1">which) -&gt; {</span>
+                        <span class="s3">// When the user click yes button then app will close</span>
+                        <span class="s1">Reset()</span><span class="s0">;</span>
+                    <span class="s1">})</span><span class="s0">;</span>
+            <span class="s1">AlertDialog alertDialog = builder.create()</span><span class="s0">;</span>
+            <span class="s1">alertDialog.show()</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">Reset(){</span>
+
+        <span class="s1">TextView zombie1 = findViewById(R.id.zombie1text)</span><span class="s0">;</span>
+        <span class="s1">TextView zombie2 = findViewById(R.id.zombie2text)     </span><span class="s0">;</span>
+        <span class="s1">TextView zombie3 = findViewById(R.id.zombie3text)     </span><span class="s0">;</span>
+        <span class="s1">TextView skeleton1 = findViewById(R.id.zombie4text)     </span><span class="s0">;</span>
+        <span class="s1">TextView skeleton2 = findViewById(R.id.zombie5text)     </span><span class="s0">;</span>
+        <span class="s1">TextView skeleton3 = findViewById(R.id.zombie6text)     </span><span class="s0">;</span>
+
+        <span class="s1">ImageView imageturn = findViewById(R.id.TurnImage)</span><span class="s0">;</span>
+        <span class="s1">ImageButton buttonA= findViewById(R.id.buttonA)</span><span class="s0">;</span>
+        <span class="s1">ImageButton buttonB= findViewById(R.id.buttonB)</span><span class="s0">;</span>
+        <span class="s1">ImageButton buttonC= findViewById(R.id.buttonC)</span><span class="s0">;</span>
+        <span class="s1">ImageButton buttonD= findViewById(R.id.buttonD)</span><span class="s0">;</span>
+        <span class="s1">ImageButton buttonE= findViewById(R.id.buttonE)</span><span class="s0">;</span>
+        <span class="s1">ImageButton buttonF= findViewById(R.id.buttonF)</span><span class="s0">;</span>
+        <span class="s1">ImageButton buttonG= findViewById(R.id.buttonG)</span><span class="s0">;</span>
+        <span class="s1">ImageButton buttonH= findViewById(R.id.buttonH)</span><span class="s0">;</span>
+        <span class="s1">ImageButton buttonI= findViewById(R.id.buttonI)</span><span class="s0">;</span>
+
+
+
+        <span class="s1">board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] = </span><span class="s2">'c'</span><span class="s0">;</span>
+        <span class="s1">board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] = </span><span class="s2">'c'</span><span class="s0">;</span>
+        <span class="s1">board[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] = </span><span class="s2">'c'</span><span class="s0">;</span>
+        <span class="s1">board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] = </span><span class="s2">'c'</span><span class="s0">;</span>
+        <span class="s1">board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] = </span><span class="s2">'c'</span><span class="s0">;</span>
+        <span class="s1">board[</span><span class="s4">1</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] = </span><span class="s2">'c'</span><span class="s0">;</span>
+        <span class="s1">board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">0</span><span class="s1">] = </span><span class="s2">'c'</span><span class="s0">;</span>
+        <span class="s1">board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">1</span><span class="s1">] = </span><span class="s2">'c'</span><span class="s0">;</span>
+        <span class="s1">board[</span><span class="s4">2</span><span class="s1">][</span><span class="s4">2</span><span class="s1">] = </span><span class="s2">'c'</span><span class="s0">;</span>
+
+        <span class="s1">turn = </span><span class="s2">'a'</span><span class="s0">;</span>
+         <span class="s1">count1 = </span><span class="s4">2</span><span class="s0">;</span>
+         <span class="s1">count2 = </span><span class="s4">2</span><span class="s0">;</span>
+         <span class="s1">count3 = </span><span class="s4">2</span><span class="s0">;</span>
+         <span class="s1">count4 = </span><span class="s4">2</span><span class="s0">;</span>
+         <span class="s1">count5 = </span><span class="s4">2</span><span class="s0">;</span>
+         <span class="s1">count6 = </span><span class="s4">2</span><span class="s0">;</span>
+         <span class="s1">choice = </span><span class="s4">1</span><span class="s0">;</span>
+         <span class="s1">choice2 = </span><span class="s4">0</span><span class="s0">;</span>
+        <span class="s1">imageturn.setImageResource(R.drawable.zombiea)</span><span class="s0">;</span>
+        <span class="s1">buttonA.setImageResource(R.drawable.chest)</span><span class="s0">;</span>
+        <span class="s1">buttonB.setImageResource(R.drawable.chest)</span><span class="s0">;</span>
+        <span class="s1">buttonC.setImageResource(R.drawable.chest)</span><span class="s0">;</span>
+        <span class="s1">buttonD.setImageResource(R.drawable.chest)</span><span class="s0">;</span>
+        <span class="s1">buttonE.setImageResource(R.drawable.chest)</span><span class="s0">;</span>
+        <span class="s1">buttonF.setImageResource(R.drawable.chest)</span><span class="s0">;</span>
+        <span class="s1">buttonG.setImageResource(R.drawable.chest)</span><span class="s0">;</span>
+        <span class="s1">buttonH.setImageResource(R.drawable.chest)</span><span class="s0">;</span>
+        <span class="s1">buttonI.setImageResource(R.drawable.chest)</span><span class="s0">;</span>
+        <span class="s1">zombie1.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count1)</span><span class="s0">;</span>
+        <span class="s1">zombie2.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count2)</span><span class="s0">;</span>
+        <span class="s1">zombie3.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count2)</span><span class="s0">;</span>
+        <span class="s1">skeleton1.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count2)</span><span class="s0">;</span>
+        <span class="s1">skeleton2.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count2)</span><span class="s0">;</span>
+        <span class="s1">skeleton3.setText(</span><span class="s2">&quot;&quot; </span><span class="s1">+ count2)</span><span class="s0">;</span>
+
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">ChangeChoice(</span><span class="s0">int </span><span class="s1">x</span><span class="s0">,char </span><span class="s1">type) {</span>
+        <span class="s1">ImageView imageturn = findViewById(R.id.TurnImage)</span><span class="s0">;</span>
+        <span class="s0">if </span><span class="s1">(turn == </span><span class="s2">'a'</span><span class="s1">){</span>
+                <span class="s0">if </span><span class="s1">(x==</span><span class="s4">1</span><span class="s1">)</span>
+                    <span class="s1">imageturn.setImageResource(R.drawable.zombiea)</span><span class="s0">;</span>
+                <span class="s0">else if </span><span class="s1">(x==</span><span class="s4">2</span><span class="s1">)</span>
+                    <span class="s1">imageturn.setImageResource(R.drawable.zombie2)</span><span class="s0">;</span>
+                <span class="s0">else if </span><span class="s1">(x==</span><span class="s4">3</span><span class="s1">)</span>
+                    <span class="s1">imageturn.setImageResource(R.drawable.zombie3)</span><span class="s0">;</span>
+
+            <span class="s1">}</span>
+        <span class="s0">else if </span><span class="s1">(turn == </span><span class="s2">'b'</span><span class="s1">){</span>
+                <span class="s0">if </span><span class="s1">(x==</span><span class="s4">1</span><span class="s1">)</span>
+                <span class="s1">imageturn.setImageResource(R.drawable.skeletonb1)</span><span class="s0">;</span>
+                <span class="s0">else if </span><span class="s1">(x==</span><span class="s4">2</span><span class="s1">)</span>
+                    <span class="s1">imageturn.setImageResource(R.drawable.skeletonb2)</span><span class="s0">;</span>
+                <span class="s0">else if </span><span class="s1">(x==</span><span class="s4">3</span><span class="s1">)</span>
+                    <span class="s1">imageturn.setImageResource(R.drawable.skeletonb3)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">choice = x</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">FlipTurn(){</span>
+        <span class="s1">ImageView imageturn = findViewById(R.id.TurnImage)</span><span class="s0">;</span>
+        <span class="s3">//gives turn to other player</span>
+        <span class="s0">if </span><span class="s1">(turn == </span><span class="s2">'a'</span><span class="s1">) {</span>
+            <span class="s1">turn = </span><span class="s2">'b'</span><span class="s0">;</span>
+            <span class="s1">imageturn.setImageResource(R.drawable.skeletonb1)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">turn = </span><span class="s2">'a'</span><span class="s0">;</span>
+                <span class="s1">imageturn.setImageResource(R.drawable.zombiea)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">ButtonA(View view) {</span>
+        <span class="s1">ImageButton buttonA= findViewById(R.id.buttonA)</span><span class="s0">;</span>
+        <span class="s1">upDateSquare(</span><span class="s4">0</span><span class="s0">,</span><span class="s4">0</span><span class="s0">,</span><span class="s1">buttonA</span><span class="s0">,</span><span class="s1">a)</span><span class="s0">;</span>
+        <span class="s3">// saves how valuable character played at that square is</span>
+        <span class="s1">a=choice</span><span class="s0">;</span>
+
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">B(View view) {</span>
+        <span class="s1">ImageButton buttonB= findViewById(R.id.buttonB)</span><span class="s0">;</span>
+        <span class="s1">upDateSquare(</span><span class="s4">0</span><span class="s0">,</span><span class="s4">1</span><span class="s0">,</span><span class="s1">buttonB</span><span class="s0">,</span><span class="s1">b)</span><span class="s0">;</span>
+        <span class="s1">b=choice</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">C(View view) {</span>
+        <span class="s1">ImageButton buttonC= findViewById(R.id.buttonC)</span><span class="s0">;</span>
+        <span class="s1">upDateSquare(</span><span class="s4">0</span><span class="s0">,</span><span class="s4">2</span><span class="s0">,</span><span class="s1">buttonC</span><span class="s0">,</span><span class="s1">c)</span><span class="s0">;</span>
+        <span class="s1">c=choice</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">D(View view) {</span>
+        <span class="s1">ImageButton buttonD= findViewById(R.id.buttonD)</span><span class="s0">;</span>
+        <span class="s1">upDateSquare(</span><span class="s4">1</span><span class="s0">,</span><span class="s4">0</span><span class="s0">,</span><span class="s1">buttonD</span><span class="s0">,</span><span class="s1">d)</span><span class="s0">;</span>
+        <span class="s1">d=choice</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">E(View view) {</span>
+        <span class="s1">ImageButton buttonE= findViewById(R.id.buttonE)</span><span class="s0">;</span>
+        <span class="s1">upDateSquare(</span><span class="s4">1</span><span class="s0">,</span><span class="s4">1</span><span class="s0">,</span><span class="s1">buttonE</span><span class="s0">,</span><span class="s1">e)</span><span class="s0">;</span>
+        <span class="s1">e=choice</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">F(View view) {</span>
+        <span class="s1">ImageButton buttonF= findViewById(R.id.buttonF)</span><span class="s0">;</span>
+       <span class="s1">upDateSquare(</span><span class="s4">1</span><span class="s0">,</span><span class="s4">2</span><span class="s0">,</span><span class="s1">buttonF</span><span class="s0">,</span><span class="s1">f)</span><span class="s0">;</span>
+        <span class="s1">f=choice</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">G(View view) {</span>
+        <span class="s1">ImageButton buttonG= findViewById(R.id.buttonG)</span><span class="s0">;</span>
+        <span class="s1">upDateSquare(</span><span class="s4">2</span><span class="s0">,</span><span class="s4">0</span><span class="s0">,</span><span class="s1">buttonG</span><span class="s0">,</span><span class="s1">g)</span><span class="s0">;</span>
+        <span class="s1">g=choice</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">H(View view) {</span>
+        <span class="s1">ImageButton buttonH= findViewById(R.id.buttonH)</span><span class="s0">;</span>
+        <span class="s1">upDateSquare(</span><span class="s4">2</span><span class="s0">, </span><span class="s4">1</span><span class="s0">, </span><span class="s1">buttonH</span><span class="s0">,</span><span class="s1">h)</span><span class="s0">;</span>
+        <span class="s1">h=choice</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">I(View view) {</span>
+        <span class="s1">ImageButton buttonI= findViewById(R.id.buttonI)</span><span class="s0">;</span>
+       <span class="s1">upDateSquare(</span><span class="s4">2</span><span class="s0">,</span><span class="s4">2</span><span class="s0">,</span><span class="s1">buttonI</span><span class="s0">,</span><span class="s1">i)</span><span class="s0">;</span>
+        <span class="s1">i=choice</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">zombie1(View view) {</span>
+        <span class="s1">ChangeChoice(</span><span class="s4">1</span><span class="s0">,</span><span class="s2">'a'</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">zombie2(View view) {</span>
+       <span class="s1">ChangeChoice(</span><span class="s4">2</span><span class="s0">,</span><span class="s2">'a'</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">zombie3(View view) {</span>
+        <span class="s1">ChangeChoice(</span><span class="s4">3</span><span class="s0">,</span><span class="s2">'a'</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">skeleton1(View view) {</span>
+        <span class="s1">ChangeChoice(</span><span class="s4">1</span><span class="s0">,</span><span class="s2">'b'</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">skeleton2(View view) {</span>
+        <span class="s1">ChangeChoice(</span><span class="s4">2</span><span class="s0">,</span><span class="s2">'b'</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">skeleton3(View view){</span>
+        <span class="s1">ChangeChoice(</span><span class="s4">3</span><span class="s0">,</span><span class="s2">'b'</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">ResetButton(View view) {</span>
+        <span class="s1">Reset()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+
+
+</pre>
+</body>
+</html>
